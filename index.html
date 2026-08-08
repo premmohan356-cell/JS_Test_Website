@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <!-- Header work...................................(stat)................. -->
+    <header
+      class="container-fluid bg-black px-4 d-flex justify-content-between"
+    >
+      <div class="row text-white my-3">
+        <div class="col-2 d-flex justify-content-center align-items-center">
+          <span class="bg-white text-black fw-bold p-2 rounded-3">PCE</span>
+        </div>
+        <div class="col-10">
+          <p class="mb-0 fw-bolder">Student Management System</p>
+          <p class="mb-0" style="font-size: 0.8rem">
+            Prabhat Computer Education
+          </p>
+        </div>
+      </div>
+      <div>
+        <p class="text-white fw-bold my-4" id="online-box">.Online</p>
+        <!-- Online Notation Box............................................................. -->
+      </div>
+    </header>
+    <!-- Navbar work........................................................(start)............. -->
+    <div class="nav border nav-pills py-2 px-3 shadow-sm">
+      <div class="nav-item">
+        <a
+          href="#dashboard"
+          class="nav-link active text-black fw-medium"
+          data-bs-toggle="tab"
+          >Dashboard</a
+        >
+      </div>
+      <div class="nav-item">
+        <a
+          href="#students"
+          class="nav-link text-black fw-medium"
+          data-bs-toggle="tab"
+          >Students</a
+        >
+      </div>
+      <div class="nav-item">
+        <a
+          href="#registration"
+          class="nav-link text-black fw-medium"
+          data-bs-toggle="tab"
+          >Registration</a
+        >
+      </div>
+      <div class="nav-item">
+        <a
+          href="#js-tools"
+          class="nav-link text-black fw-medium"
+          data-bs-toggle="tab"
+          >JS Tools</a
+        >
+      </div>
+    </div>
+    <!-- Navbar Work........................................(end)............................. -->
+    <!-- Hearder Work .................................(end)................................... -->
+    <section>
+      <div class="tab-content">
+        <div class="tab-pane" id="dashboard">
+          <!-- Dashboard Work......................................................(start) -->
+          <div class="container mt-5">
+            <div class="rounded-3 p-3 text-white" id="regis_box">
+              <p class="mb-0">PROFESSIONAL JAVASCRIPT PROJECT</p>
+              <h1 class="fw-bold">Manage Student Smarter</h1>
+              <p class="mb-2">
+                Add,edit,search,validate and calculate student results.
+              </p>
+              <!-- Register href button...................................................(start) -->
+              <div class="btn btn-light fw-medium">+ Register Student</div>
+              <!-- Register href button.....................................................(end) -->
+            </div>
+            <div class="row mt-3">
+              <div class="col-3">
+                <div class="border p-3 rounded-3 fw-bold shadow-sm">
+                  <p class="mb-0 fw-medium">Student</p>
+                  <!-- JS work............................. -->
+                  <span>2</span>
+                  <!-- JS work............................. -->
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="border p-3 rounded-3 fw-bold shadow-sm">
+                  <p class="mb-0 fw-medium">Courses</p>
+                  <!-- JS work............................. -->
+                  <span>2</span>
+                  <!-- JS work............................. -->
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="border p-3 rounded-3 fw-bold shadow-sm">
+                  <p class="mb-0 fw-medium">Passed</p>
+                  <!-- JS work............................. -->
+                  <span>2</span>
+                  <!-- JS work............................. -->
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="border p-3 rounded-3 fw-bold shadow-sm">
+                  <p class="mb-0 fw-medium">Average</p>
+                  <!-- JS work............................. -->
+                  <span>2</span>
+                  <!-- JS work............................. -->
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <div class="border p-3 rounded-3 shadow-sm">
+                  <p class="mb-1 fw-bold">Course Distribution</p>
+                  <!-- JS work............................. -->
+                  <p class="mb-0">
+                    <span>ADCA</span>:<span class="fw-medium">1</span>
+                  </p>
+                  <!-- JS work............................. -->
+                  <p class="mb-0">
+                    <span>Web Development</span>:<span class="fw-medium"
+                      >1</span
+                    >
+                  </p>
+                  <!-- JS work............................. -->
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border p-3 rounded-3 shadow-sm">
+                  <p class="mb-1 fw-bold">Recent Students</p>
+                  <!-- JS work............................. -->
+                  <p class="mb-0">
+                    <span>Prem</span>:<span class="fw-medium">1</span>
+                  </p>
+                  <!-- JS work............................. -->
+                  <p class="mb-0">
+                    <span>Amit Kumar</span>:<span class="fw-medium">1</span>
+                  </p>
+                  <!-- JS work............................. -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Dashboard Work......................................................(end) -->
+        </div>
+        <div class="tab-pane active" id="students">
+          <!-- Student Directory work...................................(start)................. -->
+          <div class="container mt-5 border">
+            <h2 class="fw-bold">Student Directory</h2>
+            <div class="row">
+              <div class="col-8">
+                <input
+                  type="search"
+                  class="w-100 me-1 input-style"
+                  placeholder="Search Your name, mobile ,email"
+                />
+              </div>
+              <div class="col-2">
+                <select
+                  name=""
+                  id=""
+                  class="w-100 me-0 input-style"
+                  style="padding: 5px"
+                >
+                  <option value="">All Courses</option>
+                  <option value="">ADCA</option>
+                  <option value="">Tally</option>
+                  <option value="">AWD</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <select
+                  name=""
+                  id=""
+                  class="w-100 me-0 input-style"
+                  style="padding: 5px"
+                >
+                  <option value="">Newest</option>
+                  <option value="">A - Z</option>
+                  <option value="">Maximise Result</option>
+                  <option value="">Minimise Result</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Student Directory work...................................(end)................. -->
+        </div>
+        <div class="tab-pane" id="registration">
+          <h1>Registration</h1>
+        </div>
+        <div class="tab-pane" id="js-tools">
+          <h1>JS Tools</h1>
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="JS/jquery_work.js"></script>
+    <script src="JS/index.js"></script>
+  </body>
+</html>
