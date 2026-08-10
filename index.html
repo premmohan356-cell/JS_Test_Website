@@ -55,6 +55,7 @@
           href="#registration"
           class="nav-link text-black fw-medium"
           data-bs-toggle="tab"
+          id="nav_reg_btn"
           >Registration</a
         >
       </div>
@@ -71,7 +72,7 @@
     <!-- Hearder Work .................................(end)................................... -->
     <section>
       <div class="tab-content">
-        <div class="tab-pane" id="dashboard">
+        <div class="tab-pane active" id="dashboard">
           <!-- Dashboard Work......................................................(start) -->
           <div class="container mt-5">
             <div class="rounded-3 p-3 text-white" id="regis_box">
@@ -81,7 +82,7 @@
                 Add,edit,search,validate and calculate student results.
               </p>
               <!-- Register href button...................................................(start) -->
-              <div class="btn btn-light fw-medium">+ Register Student</div>
+              <div class="btn btn-light fw-medium" id="regis_btn">+ Register Student</div>
               <!-- Register href button.....................................................(end) -->
             </div>
             <div class="row mt-3">
@@ -153,10 +154,13 @@
           </div>
           <!-- Dashboard Work......................................................(end) -->
         </div>
-        <div class="tab-pane active" id="students">
+        <div class="tab-pane" id="students">
           <!-- Student Directory work...................................(start)................. -->
-          <div class="container mt-5 border">
-            <h2 class="fw-bold">Student Directory</h2>
+          <div
+            class="container mt-5 pt-4 rounded-4"
+            style="background: whitesmoke"
+          >
+            <h2 class="fw-bold mb-4">Student Directory</h2>
             <div class="row">
               <div class="col-8">
                 <input
@@ -192,20 +196,274 @@
                 </select>
               </div>
             </div>
+            <div class="container p-3">
+              <table class="table table-hover table-bg-primary">
+                <thead>
+                  <th>Student</th>
+                  <th>Contact</th>
+                  <th>Course</th>
+                  <th>Result</th>
+                  <th>Action</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="d-flex flex-column">
+                      <span class="fw-bold">punshi</span>
+                      <span class="sml-txt">coursewithprabhat@gmail.com</span>
+                    </td>
+                    <td class="pt-3 text-secondary">7984687894</td>
+                    <td class="pt-3 text-secondary">Web Development</td>
+                    <td class="pt-3">
+                      <span
+                        class="bg-success bg-opacity-50 fw-bold text-success-emphasis rounded-4 p-2 sml-txt"
+                        >PASS 61.8%</span
+                      >
+                    </td>
+                    <td class="pt-3">
+                      <span
+                        class="bg-warning bg-opaicty-50 p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        >Edit</span
+                      >
+                      <span
+                        class="sml-txt bg-danger bg-opaicty-50 rounded-5 fw-bold p-2 px-4 text-danger-emphasis"
+                        >Delete</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="d-flex flex-column">
+                      <span class="fw-bold">punshi</span>
+                      <span class="sml-txt">coursewithprabhat@gmail.com</span>
+                    </td>
+                    <td class="pt-3 text-secondary">7984687894</td>
+                    <td class="pt-3 text-secondary">Web Development</td>
+                    <td class="pt-3">
+                      <span
+                        class="bg-success bg-opacity-50 fw-bold text-success-emphasis rounded-4 p-2 sml-txt"
+                        >PASS 61.8%</span
+                      >
+                    </td>
+                    <td class="pt-3">
+                      <span
+                        class="bg-warning bg-opaicty-50 p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        >Edit</span
+                      >
+                      <span
+                        class="sml-txt bg-danger bg-opaicty-50 rounded-5 fw-bold p-2 px-4 text-danger-emphasis"
+                        >Delete</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <!-- Student Directory work...................................(end)................. -->
         </div>
         <div class="tab-pane" id="registration">
-          <h1>Registration</h1>
+          <div
+            class="container my-5 rounded-4 px-4 py-4"
+            style="background: whitesmoke"
+          >
+            <form id="RegisFormTag">
+              <h2>Student Registration</h2>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <label for="nameInp" class="form-label">Name*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nameInp"
+                    required
+                  />
+                </div>
+                <div class="col-6">
+                  <label for="fnameInp" class="form-label"
+                    >Father's Name*</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fnameInp"
+                    required
+                  />
+                </div>
+              </div>
+              <!-- Fist LIne..............................end() -->
+              <div class="row mb-3">
+                <div class="col-6">
+                  <label for="mobileInp" class="form-label">Mobile*</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="mobileInp"
+                    required
+                    maxlength="10"
+                  />
+                </div>
+                <div class="col-6">
+                  <label for="emailInp" class="form-label">Email*</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="emailInp"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <label for="genderInp" class="form-label">Gender*</label>
+                  <select name="" id="genderInp" class="form-control" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label for="courseInp" class="form-label">Course*</label>
+                  <select name="" id="courseInp" class="form-control" required>
+                    <option value="">Select</option>
+                    <option value="adca">ADCA</option>
+                    <option value="awd">AWD</option>
+                    <option value="tally">Tally</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <label for="addressInp">Address*</label>
+                  <input
+                    type="text"
+                    name=""
+                    class="form-control p-3"
+                    id="addressInp"
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <label for="imageInp">Photo</label>
+                  <input type="file" id="imageInp" class="form-control" />
+                </div>
+                <div class="col">
+                  <div id="img-preview" class="bg-white">
+                    <span>No photo selected</span>
+                    <img src="" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <label for="computerMarks">Computer</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="comupterMarks"
+                    maxlength="3"
+                  />
+                </div>
+                <div class="col-2">
+                  <label for="englishMarks">English</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="englishMarks"
+                    maxlength="3"
+                  />
+                </div>
+                <div class="col-2">
+                  <label for="mathsMarks">Maths</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="mathsMarks"
+                    maxlength="3"
+                  />
+                </div>
+                <div class="col-2">
+                  <label for="practicalMarks">Practical</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="practicalMarks"
+                    maxlength="3"
+                  />
+                </div>
+                <div class="col-4">
+                  <div class="container bg-white" style="min-height: 120px">
+                    <p class="sml-txt text-black mb-1">Total/Percentage</p>
+                    <span class="fs-2 fw-bold mb-0 pb-0">100/400</span><br />
+                    <span class="fs-2 fw-bold">25.0%</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary" id="submit_Btn" type="submit">
+                  Save Student
+                </button>
+                <button class="btn btn-secondary" type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
         </div>
         <div class="tab-pane" id="js-tools">
-          <h1>JS Tools</h1>
+          <div class="container mt-5 ">
+            <h3>JAVACRIPT PRACTIVAL TOOLS</h3>
+            <div class="row">
+              <div class="col-6 ">
+                <div class="container  bg-primary-subtle p-3 rounded-3">
+                  <p class="text-center fw-bold ">Key Code Finder</p>
+                  <div class="shadow-sm ">
+                    <p class="mb-0 text-center fs-5 fw-bold mb-2">Control</p>
+                    <p class="text-center">Code: <span>Control Left</span></span>|Keycode:<span>17</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 ">
+                <div class="container bg-primary-subtle p-2 pb-4 rounded-3">
+                  <h5 class="text-center">Window Methods</h5>
+                  <div class="container mb-5 p-2 pb-2">
+                   <span
+                        class="bg-warning-subtle  p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        >Prompt</span
+                      >
+                      <span
+                        class="bg-danger-subtle p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        >confirm</span
+                      >
+                      <span
+                        class="bg-warning bg-opaicty-50 p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        >Print</span
+                      >
+                      </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <div class="container  bg-primary-subtle p-3 rounded-3">
+                  <label for="json" class="form-label">JSON + Base64</label>
+                  <input type="text" class="form-control" placeholder="Enter text">
+                <button class="btn border border-black mt-1 fw-bold bg-dark-subtle ">Encode/ Decode</button>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="container bg-primary-subtle p-3 rounded-3">
+                <h6 class="fw-bold">Browser Info</h6>
+                <p class="sml-txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, inventore!</p>
+                <button class="btn btn-dark-sutble border border-black">Reload</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="JS/jquery_work.js"></script>
     <script src="JS/index.js"></script>
+    <script src="JS/jquery_work.js"></script>
   </body>
 </html>

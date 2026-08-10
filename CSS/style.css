@@ -22,3 +22,13 @@
   border: none;
   border: 1px solid black;
 }
+.sml-txt {
+  font-size: 0.8rem;
+  color: grey;
+}
+#img-preview {
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
