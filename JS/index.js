@@ -4,10 +4,12 @@ let Submit_Button = document.getElementById("RegisFormTag");
 let Image_Input = document.getElementById("imageInp");
 let CourseInput = document.getElementById("courseInp");
 let MainTableBody = document.getElementById("TabelBodyTag");
+let Search_Inp = document.getElementById("SearchInput");
 
 let ImgUrl;
 // Windowlogn funtion.................................
 StudentData();
+// DashUpdate();
 // Windowlogn funtion.................................
 
 Submit_Button.addEventListener("submit", submission);
@@ -18,6 +20,8 @@ function submission(event) {
     object_input_data[n.getAttribute("id")] = n.value;
   });
   PutDataStore(object_input_data);
+  // console.log(this);
+  this.reset();
 }
 // LocalStorage Work......................................................
 function PutDataStore(obj) {
@@ -75,12 +79,14 @@ function StudentData() {
     if (key.match("_Datum")) {
       let Student_data_string = atob(localStorage.getItem(key));
       let Student_data_object = JSON.parse(Student_data_string);
-      console.log(Student_data_object);
+      // console.log(Student_data_object);
       AddStudnentDir(Student_data_object);
     }
   }
+  DashUpdate();
 }
 function AddStudnentDir(database) {
+  // console.log(database);
   let totalmarks =
     ((Number(database["comupterMarks"]) +
       Number(database["englishMarks"]) +
@@ -100,6 +106,7 @@ function AddStudnentDir(database) {
 
   // MainTableBody.innerHTML = "";
   let table_row = document.createElement("TR");
+  table_row.setAttribute("stdtable", JSON.stringify(database));
   let table_data1 = document.createElement("TD");
   // ..................................................
   table_data1.className = "d-flex flex-column";
@@ -130,10 +137,12 @@ function AddStudnentDir(database) {
   editButton.className =
     "bg-warning bg-opaicty-50 p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis me-2";
   editButton.innerText = "Edit";
+  editButton.addEventListener("click", EditData);
   let deleteButton = document.createElement("SPAN");
   deleteButton.className =
     "sml-txt bg-danger bg-opaicty-50 rounded-5 fw-bold p-2 px-4 text-danger-emphasis";
   deleteButton.innerText = "Delete";
+  deleteButton.addEventListener("click", DeleteData);
   // Apeending Element.................................
   table_row.appendChild(table_data1);
   table_row.appendChild(table_data2);
@@ -148,4 +157,178 @@ function AddStudnentDir(database) {
   table_data5.appendChild(deleteButton);
 
   MainTableBody.appendChild(table_row);
+}
+
+// Search Input WOrk.......................................................
+Search_Inp.oninput = function () {
+  let Stdtables = MainTableBody.getElementsByTagName("TR");
+  for (indexes of Stdtables) {
+    let user_data_object = JSON.parse(indexes.getAttribute("stdtable"));
+    if (
+      user_data_object["nameInp"].toLowerCase().match(this.value.toLowerCase())
+    ) {
+      indexes.style.display = "table-row";
+    } else {
+      indexes.style.display = "none";
+    }
+  }
+};
+// search Input  work........................................
+let CourseSearch = document.getElementById("course-Inp");
+CourseSearch.addEventListener("change", function () {
+  let Stdtables = MainTableBody.getElementsByTagName("TR");
+  for (indexes of Stdtables) {
+    let user_data_object = JSON.parse(indexes.getAttribute("stdtable"));
+    console.log(user_data_object["courseInp"]);
+    console.log(this.value);
+    if (!this.value) {
+      indexes.style.display = "table-row";
+    } else if (
+      user_data_object["courseInp"].toLowerCase() === this.value.toLowerCase()
+    ) {
+      indexes.style.display = "table-row";
+    } else {
+      indexes.style.display = "none";
+    }
+  }
+});
+
+/*function SearchTemplate(vals) {
+  let Stdtables = MainTableBody.getElementsByTagName("TR");
+  for (indexes of Stdtables) {
+    let user_data_object = JSON.parse(indexes.getAttribute("stdtable"));
+    if (user_data_object[vals].toLowerCase().match(this.value.toLowerCase())) {
+      indexes.style.display = "table-row";
+    } else {
+      indexes.style.display = "none";
+    }
+  }
+}*/
+function DashUpdate() {
+  let Stdtables = MainTableBody.getElementsByTagName("TR");
+  student_Num = 0;
+  Passed_Num = 0;
+  courses_Array = [0, 0, 0];
+  let Recent_Name = "";
+  for (indexes of Stdtables) {
+    let user_data_object = JSON.parse(indexes.getAttribute("stdtable"));
+    Recent_Name += user_data_object["nameInp"] + "_";
+    student_Num++;
+    let totalmarks =
+      ((Number(user_data_object["comupterMarks"]) +
+        Number(user_data_object["englishMarks"]) +
+        Number(user_data_object["mathsMarks"]) +
+        Number(user_data_object["practicalMarks"])) /
+        400) *
+      100;
+    if (totalmarks >= 35) {
+      Passed_Num++;
+    }
+    switch (user_data_object["courseInp"]) {
+      case "awd":
+        {
+          courses_Array[0]++;
+        }
+        break;
+      case "adca":
+        {
+          courses_Array[1]++;
+        }
+        break;
+      case "tally":
+        {
+          courses_Array[2]++;
+        }
+        break;
+        defualt: {
+        }
+        break;
+    }
+  }
+  let Recent_Name_Array;
+  if (Recent_Name) {
+    Recent_Name_Array = Recent_Name.split("_").slice(0, 2);
+  }
+  Dashboardstyle(student_Num, courses_Array, Passed_Num, Recent_Name_Array);
+}
+function Dashboardstyle(a, b, c, d) {
+  let StudentNumberShow = document.getElementById("stdnumshow");
+  let StudentPassedShow = document.getElementsByClassName("stdpassshow");
+  let CourseDistribution = document.getElementById("course-distri");
+  let Recent_Student_Area = document.getElementById("recent-s");
+  StudentNumberShow.innerText = a;
+  StudentPassedShow[0].innerText = c;
+  StudentPassedShow[1].innerText = c;
+  // console.log(b);
+  if (b[0] || b[1] || b[2]) {
+    CourseDistribution.innerHTML =
+      " <p class='mb-1 fw-bold'>Course Distribution</p>";
+    if (b[0]) {
+      let box = document.createElement("P");
+      box.className = "mb-0";
+      box.innerText = `Web Development:${b[0]}`;
+      CourseDistribution.appendChild(box);
+      // console.log("Heelo");
+    }
+    if (b[1]) {
+      let box = document.createElement("P");
+      box.className = "mb-0";
+      box.innerText = `ADCA:${b[1]}`;
+      CourseDistribution.appendChild(box);
+    }
+    if (b[2]) {
+      let box = document.createElement("P");
+      box.className = "mb-0";
+      box.innerText = `Tally:${b[2]}`;
+      CourseDistribution.appendChild(box);
+    }
+  }
+  if (d) {
+    Recent_Student_Area.innerHTML =
+      "<p class='mb-1 fw-bold'>Recent Students</p>";
+    let box = document.createElement("P");
+    box.className = "mb-0";
+    box.innerText = d[0];
+    Recent_Student_Area.appendChild(box);
+    if (d[1]) {
+      let box = document.createElement("P");
+      box.className = "mb-0";
+      box.innerText = d[1];
+      Recent_Student_Area.appendChild(box);
+    }
+  }
+}
+// Js Tool Work.....................................................................................
+let Confirm_Button = document.getElementById("Confirm_btn");
+
+Confirm_Button.addEventListener("click", function () {
+  window.confirm("Are Your a Student");
+});
+let Prompt_Button = document.getElementById("Prompt_btn");
+Prompt_Button.addEventListener("click", function () {
+  window.prompt("What is your Name");
+});
+let Print_Button = document.getElementById("Print_btn");
+Print_Button.addEventListener("click", function () {
+  window.print();
+});
+// Key Down Work........................................................
+document.onkeydown = function (event) {
+  // console.log(event);
+  let KeyNamesArea = document.getElementById("key-names");
+  let KeyCodeArea = document.getElementById("key-code");
+  let KeyDecodeArea = document.getElementById("key-decode");
+  KeyNamesArea.innerText = event.key;
+  KeyCodeArea.innerText = event.code;
+  KeyDecodeArea.innerText = event.keyCode;
+};
+// Deleteing the Student Data..................................................
+function DeleteData() {
+  let ParentEle = this.parentElement.parentElement;
+  console.log(ParentEle);
+  console.log(ParentEle.getAttribute(stdtable));
+  // alert("delete");
+}
+function EditData() {
+  alert("edit");
 }

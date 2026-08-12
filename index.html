@@ -90,7 +90,7 @@
                 <div class="border p-3 rounded-3 fw-bold shadow-sm">
                   <p class="mb-0 fw-medium">Student</p>
                   <!-- JS work............................. -->
-                  <span>2</span>
+                  <span id="stdnumshow">2</span>
                   <!-- JS work............................. -->
                 </div>
               </div>
@@ -98,7 +98,7 @@
                 <div class="border p-3 rounded-3 fw-bold shadow-sm">
                   <p class="mb-0 fw-medium">Courses</p>
                   <!-- JS work............................. -->
-                  <span>2</span>
+                  <span>3</span>
                   <!-- JS work............................. -->
                 </div>
               </div>
@@ -106,7 +106,7 @@
                 <div class="border p-3 rounded-3 fw-bold shadow-sm">
                   <p class="mb-0 fw-medium">Passed</p>
                   <!-- JS work............................. -->
-                  <span>2</span>
+                  <span class="stdpassshow">2</span>
                   <!-- JS work............................. -->
                 </div>
               </div>
@@ -114,30 +114,28 @@
                 <div class="border p-3 rounded-3 fw-bold shadow-sm">
                   <p class="mb-0 fw-medium">Average</p>
                   <!-- JS work............................. -->
-                  <span>2</span>
+                  <span class="stdpassshow">2</span>
                   <!-- JS work............................. -->
                 </div>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <div class="border p-3 rounded-3 shadow-sm">
+                <div class="border p-3 rounded-3 shadow-sm" id="course-distri">
                   <p class="mb-1 fw-bold">Course Distribution</p>
                   <!-- JS work............................. -->
                   <p class="mb-0">
-                    <span>ADCA</span>:<span class="fw-medium">1</span>
+                    ADCA:0
                   </p>
                   <!-- JS work............................. -->
                   <p class="mb-0">
-                    <span>Web Development</span>:<span class="fw-medium"
-                      >1</span
-                    >
+                    Web Development:0
                   </p>
                   <!-- JS work............................. -->
                 </div>
               </div>
               <div class="col-6">
-                <div class="border p-3 rounded-3 shadow-sm">
+                <div class="border p-3 rounded-3 shadow-sm" id="recent-s">
                   <p class="mb-1 fw-bold">Recent Students</p>
                   <!-- JS work............................. -->
                   <p class="mb-0">
@@ -167,19 +165,20 @@
                   type="search"
                   class="w-100 me-1 input-style"
                   placeholder="Search Your name, mobile ,email"
+                  id="SearchInput"
                 />
               </div>
               <div class="col-2">
                 <select
                   name=""
-                  id=""
+                  id="course-Inp"
                   class="w-100 me-0 input-style"
                   style="padding: 5px"
                 >
                   <option value="">All Courses</option>
-                  <option value="">ADCA</option>
-                  <option value="">Tally</option>
-                  <option value="">AWD</option>
+                  <option value="adca">ADCA</option>
+                  <option value="tally">Tally</option>
+                  <option value="awd">AWD</option>
                 </select>
               </div>
               <div class="col-2">
@@ -416,8 +415,8 @@
                 <div class="container  bg-primary-subtle p-3 rounded-3">
                   <p class="text-center fw-bold ">Key Code Finder</p>
                   <div class="shadow-sm ">
-                    <p class="mb-0 text-center fs-5 fw-bold mb-2">Control</p>
-                    <p class="text-center">Code: <span>Control Left</span></span>|Keycode:<span>17</span></p>
+                    <p class="mb-0 text-center fs-5 fw-bold mb-2" id="key-names"></p>
+                    <p class="text-center">Code: <span id="key-code"></span></span>|Keycode:<span id="key-decode"></span></p>
                   </div>
                 </div>
               </div>
@@ -427,14 +426,15 @@
                   <div class="container mb-5 p-2 pb-2">
                    <span
                         class="bg-warning-subtle  p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        id="Prompt_btn"
                         >Prompt</span
                       >
                       <span
-                        class="bg-danger-subtle p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        class="bg-danger-subtle p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis" id="Confirm_btn"
                         >confirm</span
                       >
                       <span
-                        class="bg-warning bg-opaicty-50 p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis"
+                        class="bg-warning bg-opaicty-50 p-2 rounded-5 px-4 fw-bold sml-txt text-warning-emphasis" id="Print_btn"
                         >Print</span
                       >
                       </div>
@@ -453,7 +453,7 @@
                 <div class="container bg-primary-subtle p-3 rounded-3">
                 <h6 class="fw-bold">Browser Info</h6>
                 <p class="sml-txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, inventore!</p>
-                <button class="btn btn-dark-sutble border border-black">Reload</button>
+                <button class="btn btn-dark-sutble border border-black" onclick="location.reload()">Reload</button>
                 </div>
               </div>
 
