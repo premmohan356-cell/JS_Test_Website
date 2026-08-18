@@ -27,6 +27,7 @@ function submission(event) {
 function PutDataStore(obj) {
   obj["imageInp"] = ImgUrl;
   obj["courseInp"] = CourseInput.value;
+  obj["genderInp"] = document.querySelector("#genderInp").value;
   let object_Name = obj["emailInp"];
   let object_String_data = btoa(JSON.stringify(obj));
   localStorage.setItem(btoa(object_Name) + "_Datum", object_String_data);
@@ -87,13 +88,14 @@ function StudentData() {
 }
 function AddStudnentDir(database) {
   // console.log(database);
-  let totalmarks =
+  let totalmarks = (
     ((Number(database["comupterMarks"]) +
       Number(database["englishMarks"]) +
       Number(database["mathsMarks"]) +
       Number(database["practicalMarks"])) /
       400) *
-    100;
+    100
+  ).toFixed(2);
   let grade;
   let color;
   if (totalmarks >= 35) {
@@ -212,7 +214,8 @@ function DashUpdate() {
   let Recent_Name = "";
   for (indexes of Stdtables) {
     let user_data_object = JSON.parse(indexes.getAttribute("stdtable"));
-    Recent_Name += user_data_object["nameInp"] + "_";
+    Recent_Name +=
+      user_data_object["nameInp"] + "_" + user_data_object["courseInp"] + "_";
     student_Num++;
     let totalmarks =
       ((Number(user_data_object["comupterMarks"]) +
@@ -247,7 +250,7 @@ function DashUpdate() {
   }
   let Recent_Name_Array;
   if (Recent_Name) {
-    Recent_Name_Array = Recent_Name.split("_").slice(0, 2);
+    Recent_Name_Array = Recent_Name.split("_").slice(0, 4);
   }
   Dashboardstyle(student_Num, courses_Array, Passed_Num, Recent_Name_Array);
 }
@@ -288,12 +291,13 @@ function Dashboardstyle(a, b, c, d) {
       "<p class='mb-1 fw-bold'>Recent Students</p>";
     let box = document.createElement("P");
     box.className = "mb-0";
-    box.innerText = d[0];
+    box.innerText = d[0] + "-" + d[1].toUpperCase();
     Recent_Student_Area.appendChild(box);
-    if (d[1]) {
+    // console.log(d[2]);
+    if (d[2]) {
       let box = document.createElement("P");
       box.className = "mb-0";
-      box.innerText = d[1];
+      box.innerText = d[2] + "-" + d[3].toUpperCase();
       Recent_Student_Area.appendChild(box);
     }
   }
@@ -322,13 +326,44 @@ document.onkeydown = function (event) {
   KeyCodeArea.innerText = event.code;
   KeyDecodeArea.innerText = event.keyCode;
 };
+// Online Work........................................................
+function CheckNets() {
+  // console.log("Heelo");
+  let OnlineResult = document.querySelector("#online-box");
+  if (navigator.onLine) {
+    OnlineResult.innerText = ".Online";
+    requestAnimationFrame(CheckNets);
+  } else {
+    OnlineResult.innerText = ".Offline";
+    requestAnimationFrame(CheckNets);
+  }
+}
+requestAnimationFrame(CheckNets);
 // Deleteing the Student Data..................................................
 function DeleteData() {
   let ParentEle = this.parentElement.parentElement;
-  console.log(ParentEle);
-  console.log(ParentEle.getAttribute(stdtable));
+  // console.log(ParentEle);
+  let Object_data = JSON.parse(ParentEle.getAttribute("stdtable"));
+  let confirmation = window.confirm("Are You Sure");
+  // alert(confirmation);
+  // console.log(Object_data.emailInp);
+  if (confirmation) {
+    localStorage.removeItem(btoa(Object_data.emailInp) + "_Datum");
+    ParentEle.remove();
+  }
   // alert("delete");
 }
 function EditData() {
-  alert("edit");
+  let ParentEle = this.parentElement.parentElement;
+  let Object_data = JSON.parse(ParentEle.getAttribute("stdtable"));
+  // console.log(Object_data);
+  for (let keyes in Object_data) {
+    let Inputs = document.getElementById(keyes);
+    if (Inputs.type === "file") {
+      Inputs.files[0] = Object_data[keyes];
+      console.log(Inputs.files);
+    } else {
+      Inputs.value = Object_data[keyes];
+    }
+  }
 }
