@@ -5,6 +5,7 @@ let Image_Input = document.getElementById("imageInp");
 let CourseInput = document.getElementById("courseInp");
 let MainTableBody = document.getElementById("TabelBodyTag");
 let Search_Inp = document.getElementById("SearchInput");
+console.log(InputList);
 
 let ImgUrl;
 // Windowlogn funtion.................................
@@ -15,14 +16,29 @@ StudentData();
 Submit_Button.addEventListener("submit", submission);
 function submission(event) {
   event.preventDefault();
-  let object_input_data = {};
-  InputList.forEach((n) => {
-    object_input_data[n.getAttribute("id")] = n.value;
-  });
-  PutDataStore(object_input_data);
-  // console.log(this);
-  this.reset();
+  console.log(localStorage.getItem(btoa(InputList[3].value) + "_Datum"));
+
+  if (!Submit_Button.getAttribute("Editing")) {
+    let object_input_data = {};
+    InputList.forEach((n) => {
+      object_input_data[n.getAttribute("id")] = n.value;
+    });
+    PutDataStore(object_input_data);
+    // console.log(this);
+    this.reset();
+  } else {
+    // alert("Editing");
+    localStorage.removeItem(btoa(this.getAttribute("Editing")) + "_Datum");
+    let object_input_data = {};
+    InputList.forEach((n) => {
+      object_input_data[n.getAttribute("id")] = n.value;
+    });
+    PutDataStore(object_input_data);
+    this.reset();
+    Submit_Button.removeAttribute("Editing");
+  }
 }
+
 // LocalStorage Work......................................................
 function PutDataStore(obj) {
   obj["imageInp"] = ImgUrl;
@@ -51,19 +67,21 @@ function Imgfunct() {
 let MarksInput = document.querySelectorAll("#MarksBox input");
 
 MarksInput.forEach((Inputs) => {
-  Inputs.addEventListener("input", function () {
-    let MarksTotal = 0;
-    MarksInput.forEach((n) => {
-      if (!(n.value > 100) && !n.value.match(/[a-z]/)) {
-        MarksTotal += Number(n.value);
-      } else {
-        window.alert("Please Enter Correct Mark");
-        n.value = "";
-      }
-    });
-    StyleValue(MarksTotal);
-  });
+  Inputs.addEventListener("input", MarksEvals);
 });
+function MarksEvals() {
+  let MarksTotal = 0;
+  MarksInput.forEach((n) => {
+    if (!(n.value > 100) && !n.value.match(/[a-z]/)) {
+      MarksTotal += Number(n.value);
+    } else {
+      window.alert("Please Enter Correct Mark");
+      n.value = "";
+    }
+  });
+  StyleValue(MarksTotal);
+}
+
 // MarkS Board work.....................................................
 function StyleValue(sum) {
   let Averagemark = (sum / 400) * 100;
@@ -366,4 +384,7 @@ function EditData() {
       Inputs.value = Object_data[keyes];
     }
   }
+  MarksEvals();
+  Regis_Btn.click();
+  Submit_Button.setAttribute("Editing", Object_data["emailInp"]);
 }
