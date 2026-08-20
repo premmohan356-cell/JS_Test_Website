@@ -51,19 +51,20 @@ function Imgfunct() {
 let MarksInput = document.querySelectorAll("#MarksBox input");
 
 MarksInput.forEach((Inputs) => {
-  Inputs.addEventListener("input", function () {
-    let MarksTotal = 0;
-    MarksInput.forEach((n) => {
-      if (!(n.value > 100) && !n.value.match(/[a-z]/)) {
-        MarksTotal += Number(n.value);
-      } else {
-        window.alert("Please Enter Correct Mark");
-        n.value = "";
-      }
-    });
-    StyleValue(MarksTotal);
-  });
+  Inputs.addEventListener("input", MarkerFunc);
 });
+function MarkerFunc() {
+  let MarksTotal = 0;
+  MarksInput.forEach((n) => {
+    if (!(n.value > 100) && !n.value.match(/[a-z]/)) {
+      MarksTotal += Number(n.value);
+    } else {
+      window.alert("Please Enter Correct Mark");
+      n.value = "";
+    }
+  });
+  StyleValue(MarksTotal);
+}
 // MarkS Board work.....................................................
 function StyleValue(sum) {
   let Averagemark = (sum / 400) * 100;
@@ -366,4 +367,6 @@ function EditData() {
       Inputs.value = Object_data[keyes];
     }
   }
+  MarkerFunc();
+  Regis_Btn.click();
 }
